@@ -134,32 +134,13 @@ def main(folder: Path):
         handle_archive(file, folder / 'archives')
 
 def start():
-    if sys.argv[1]:
-        folder_for_scan = Path(sys.argv[1])
-        print(f'Start in folder {folder_for_scan.resolve()}')
-        main(folder_for_scan.resolve())
-    for folder in FOLDERS[::-1]:
-        handle_folder(folder)
+    try:
+        if sys.argv[1]:
+            folder_for_scan = Path(sys.argv[1])
+            print(f'Start in folder {folder_for_scan.resolve()}')
+            main(folder_for_scan.resolve())
+        for folder in FOLDERS[::-1]:
+            handle_folder(folder)
+    except IndexError:
+        print("Введіть ім'я папки")
 
-# if __name__ == "__main__":
-#     if sys.argv[1]:
-#         folder_for_scan = Path(sys.argv[1]) #Path('Д36\Мотлох')
-#         print(f'Start in folder: {folder_for_scan.resolve()}')
-#         main(folder_for_scan.resolve())
-
-#     print(f'Images jpeg: {JPEG_IMAGES}', sep="\n")
-#     print(f'Images jpg: {JPG_IMAGES}', sep="\n")
-#     print(f'Images svg: {SVG_IMAGES}', sep="\n")
-#     print(f'Images svg: {AVI_VIDEO}', sep="\n")
-#     print(f'Images svg: {MPEG_VIDEO}', sep="\n")
-#     print(f'Images svg: {MP4_VIDEO}', sep="\n")
-#     print(f'Images svg: {DOC_WORD}', sep="\n")
-#     print(f'Images svg: {DOC_TXT}', sep="\n")
-#     print(f'Audio mp3: {MP3_AUDIO}', sep="\n")
-#     print(f'Archives: {ARCHIVES}', sep="\n")
-
-#     print(f'Types of files in folder: {EXTENSION}', sep="\n")
-#     print(f'Unknown files of types: {UNKNOWN}', sep="\n")
-#     print(f'MY_OTHER: {MY_OTHER}', sep="\n")
-
-#     print(f'Folders: {FOLDERS}', sep="\n")
